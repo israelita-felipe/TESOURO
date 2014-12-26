@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListFechamentoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListFechamentoEmpty}" rendered="#{fechamentoController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{fechamentoController.items.rowCount > 0}">
+                    <h:outputText value="#{fechamentoController.pagination.pageFirstItem + 1}..#{fechamentoController.pagination.pageLastItem + 1}/#{fechamentoController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{fechamentoController.previous}" value="#{bundle.Previous} #{fechamentoController.pagination.pageSize}" rendered="#{fechamentoController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{fechamentoController.next}" value="#{bundle.Next} #{fechamentoController.pagination.pageSize}" rendered="#{fechamentoController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{fechamentoController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListFechamentoTitle_fechamentoPK_dataFim}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fechamentoPK.dataFim}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListFechamentoTitle_fechamentoPK_dataInicio}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fechamentoPK.dataInicio}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListFechamentoTitle_usuario}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.usuario}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListFechamentoTitle_conta}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.conta}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{fechamentoController.prepareView}" value="#{bundle.ListFechamentoViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{fechamentoController.prepareEdit}" value="#{bundle.ListFechamentoEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{fechamentoController.destroy}" value="#{bundle.ListFechamentoDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{fechamentoController.prepareCreate}" value="#{bundle.ListFechamentoCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListFechamentoIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditCreditoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditCreditoLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{creditoController.selected.id}" title="#{bundle.EditCreditoTitle_id}" required="true" requiredMessage="#{bundle.EditCreditoRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.EditCreditoLabel_dataCompensado}" for="dataCompensado" />
+                    <h:inputText id="dataCompensado" value="#{creditoController.selected.dataCompensado}" title="#{bundle.EditCreditoTitle_dataCompensado}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditCreditoLabel_dataLancamento}" for="dataLancamento" />
+                    <h:inputText id="dataLancamento" value="#{creditoController.selected.dataLancamento}" title="#{bundle.EditCreditoTitle_dataLancamento}" required="true" requiredMessage="#{bundle.EditCreditoRequiredMessage_dataLancamento}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditCreditoLabel_descricao}" for="descricao" />
+                    <h:inputText id="descricao" value="#{creditoController.selected.descricao}" title="#{bundle.EditCreditoTitle_descricao}" required="true" requiredMessage="#{bundle.EditCreditoRequiredMessage_descricao}"/>
+                    <h:outputLabel value="#{bundle.EditCreditoLabel_documento}" for="documento" />
+                    <h:inputText id="documento" value="#{creditoController.selected.documento}" title="#{bundle.EditCreditoTitle_documento}" required="true" requiredMessage="#{bundle.EditCreditoRequiredMessage_documento}"/>
+                    <h:outputLabel value="#{bundle.EditCreditoLabel_valor}" for="valor" />
+                    <h:inputText id="valor" value="#{creditoController.selected.valor}" title="#{bundle.EditCreditoTitle_valor}" required="true" requiredMessage="#{bundle.EditCreditoRequiredMessage_valor}"/>
+                    <h:outputLabel value="#{bundle.EditCreditoLabel_usuario}" for="usuario" />
+                    <h:inputText id="usuario" value="#{creditoController.selected.usuario}" title="#{bundle.EditCreditoTitle_usuario}" />
+                    <h:outputLabel value="#{bundle.EditCreditoLabel_conta}" for="conta" />
+                    <h:selectOneMenu id="conta" value="#{creditoController.selected.conta}" title="#{bundle.EditCreditoTitle_conta}" required="true" requiredMessage="#{bundle.EditCreditoRequiredMessage_conta}">
+                        <f:selectItems value="#{contaController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{creditoController.update}" value="#{bundle.EditCreditoSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditCreditoViewLink}"/>
+                <br />
+                <h:commandLink action="#{creditoController.prepareList}" value="#{bundle.EditCreditoShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditCreditoIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

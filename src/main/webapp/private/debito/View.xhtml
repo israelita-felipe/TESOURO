@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewDebitoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewDebitoLabel_id}"/>
+                    <h:outputText value="#{debitoController.selected.id}" title="#{bundle.ViewDebitoTitle_id}"/>
+                    <h:outputText value="#{bundle.ViewDebitoLabel_dataCompensado}"/>
+                    <h:outputText value="#{debitoController.selected.dataCompensado}" title="#{bundle.ViewDebitoTitle_dataCompensado}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewDebitoLabel_dataLancamento}"/>
+                    <h:outputText value="#{debitoController.selected.dataLancamento}" title="#{bundle.ViewDebitoTitle_dataLancamento}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewDebitoLabel_descricao}"/>
+                    <h:outputText value="#{debitoController.selected.descricao}" title="#{bundle.ViewDebitoTitle_descricao}"/>
+                    <h:outputText value="#{bundle.ViewDebitoLabel_documento}"/>
+                    <h:outputText value="#{debitoController.selected.documento}" title="#{bundle.ViewDebitoTitle_documento}"/>
+                    <h:outputText value="#{bundle.ViewDebitoLabel_valor}"/>
+                    <h:outputText value="#{debitoController.selected.valor}" title="#{bundle.ViewDebitoTitle_valor}"/>
+                    <h:outputText value="#{bundle.ViewDebitoLabel_usuario}"/>
+                    <h:outputText value="#{debitoController.selected.usuario}" title="#{bundle.ViewDebitoTitle_usuario}"/>
+                    <h:outputText value="#{bundle.ViewDebitoLabel_conta}"/>
+                    <h:outputText value="#{debitoController.selected.conta}" title="#{bundle.ViewDebitoTitle_conta}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{debitoController.destroyAndView}" value="#{bundle.ViewDebitoDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewDebitoEditLink}"/>
+                <br />
+                <h:commandLink action="#{debitoController.prepareCreate}" value="#{bundle.ViewDebitoCreateLink}" />
+                <br />
+                <h:commandLink action="#{debitoController.prepareList}" value="#{bundle.ViewDebitoShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewDebitoIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

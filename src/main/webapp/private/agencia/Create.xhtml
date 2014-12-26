@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateAgenciaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateAgenciaLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{agenciaController.selected.id}" title="#{bundle.CreateAgenciaTitle_id}" required="true" requiredMessage="#{bundle.CreateAgenciaRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.CreateAgenciaLabel_digito}" for="digito" />
+                    <h:inputText id="digito" value="#{agenciaController.selected.digito}" title="#{bundle.CreateAgenciaTitle_digito}" required="true" requiredMessage="#{bundle.CreateAgenciaRequiredMessage_digito}"/>
+                    <h:outputLabel value="#{bundle.CreateAgenciaLabel_cep}" for="cep" />
+                    <h:inputText id="cep" value="#{agenciaController.selected.cep}" title="#{bundle.CreateAgenciaTitle_cep}" required="true" requiredMessage="#{bundle.CreateAgenciaRequiredMessage_cep}"/>
+                    <h:outputLabel value="#{bundle.CreateAgenciaLabel_logradouro}" for="logradouro" />
+                    <h:inputText id="logradouro" value="#{agenciaController.selected.logradouro}" title="#{bundle.CreateAgenciaTitle_logradouro}" required="true" requiredMessage="#{bundle.CreateAgenciaRequiredMessage_logradouro}"/>
+                    <h:outputLabel value="#{bundle.CreateAgenciaLabel_numero}" for="numero" />
+                    <h:inputText id="numero" value="#{agenciaController.selected.numero}" title="#{bundle.CreateAgenciaTitle_numero}" required="true" requiredMessage="#{bundle.CreateAgenciaRequiredMessage_numero}"/>
+                    <h:outputLabel value="#{bundle.CreateAgenciaLabel_descricao}" for="descricao" />
+                    <h:inputText id="descricao" value="#{agenciaController.selected.descricao}" title="#{bundle.CreateAgenciaTitle_descricao}" required="true" requiredMessage="#{bundle.CreateAgenciaRequiredMessage_descricao}"/>
+                    <h:outputLabel value="#{bundle.CreateAgenciaLabel_usuario}" for="usuario" />
+                    <h:inputText id="usuario" value="#{agenciaController.selected.usuario}" title="#{bundle.CreateAgenciaTitle_usuario}" />
+                    <h:outputLabel value="#{bundle.CreateAgenciaLabel_bancoId}" for="bancoId" />
+                    <h:selectOneMenu id="bancoId" value="#{agenciaController.selected.bancoId}" title="#{bundle.CreateAgenciaTitle_bancoId}" required="true" requiredMessage="#{bundle.CreateAgenciaRequiredMessage_bancoId}">
+                        <f:selectItems value="#{bancoController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateAgenciaLabel_cidadeId}" for="cidadeId" />
+                    <h:selectOneMenu id="cidadeId" value="#{agenciaController.selected.cidadeId}" title="#{bundle.CreateAgenciaTitle_cidadeId}" required="true" requiredMessage="#{bundle.CreateAgenciaRequiredMessage_cidadeId}">
+                        <f:selectItems value="#{cidadeController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{agenciaController.create}" value="#{bundle.CreateAgenciaSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{agenciaController.prepareList}" value="#{bundle.CreateAgenciaShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateAgenciaIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

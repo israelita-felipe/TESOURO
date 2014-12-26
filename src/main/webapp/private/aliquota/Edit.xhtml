@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditAliquotaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditAliquotaLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{aliquotaController.selected.id}" title="#{bundle.EditAliquotaTitle_id}" required="true" requiredMessage="#{bundle.EditAliquotaRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.EditAliquotaLabel_percentagem}" for="percentagem" />
+                    <h:inputText id="percentagem" value="#{aliquotaController.selected.percentagem}" title="#{bundle.EditAliquotaTitle_percentagem}" required="true" requiredMessage="#{bundle.EditAliquotaRequiredMessage_percentagem}"/>
+                    <h:outputLabel value="#{bundle.EditAliquotaLabel_descricao}" for="descricao" />
+                    <h:inputText id="descricao" value="#{aliquotaController.selected.descricao}" title="#{bundle.EditAliquotaTitle_descricao}" required="true" requiredMessage="#{bundle.EditAliquotaRequiredMessage_descricao}"/>
+                    <h:outputLabel value="#{bundle.EditAliquotaLabel_usuario}" for="usuario" />
+                    <h:inputText id="usuario" value="#{aliquotaController.selected.usuario}" title="#{bundle.EditAliquotaTitle_usuario}" />
+                </h:panelGrid>
+                <h:commandLink action="#{aliquotaController.update}" value="#{bundle.EditAliquotaSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditAliquotaViewLink}"/>
+                <br />
+                <h:commandLink action="#{aliquotaController.prepareList}" value="#{bundle.EditAliquotaShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditAliquotaIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

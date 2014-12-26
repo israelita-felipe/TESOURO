@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateFichaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateFichaLabel_descricao}" for="descricao" />
+                    <h:inputText id="descricao" value="#{fichaController.selected.descricao}" title="#{bundle.CreateFichaTitle_descricao}" required="true" requiredMessage="#{bundle.CreateFichaRequiredMessage_descricao}"/>
+                    <h:outputLabel value="#{bundle.CreateFichaLabel_numero}" for="numero" />
+                    <h:inputText id="numero" value="#{fichaController.selected.numero}" title="#{bundle.CreateFichaTitle_numero}" required="true" requiredMessage="#{bundle.CreateFichaRequiredMessage_numero}"/>
+                    <h:outputLabel value="#{bundle.CreateFichaLabel_usuario}" for="usuario" />
+                    <h:inputText id="usuario" value="#{fichaController.selected.usuario}" title="#{bundle.CreateFichaTitle_usuario}" />
+                    <h:outputLabel value="#{bundle.CreateFichaLabel_alinea}" for="alinea" />
+                    <h:selectOneMenu id="alinea" value="#{fichaController.selected.alinea}" title="#{bundle.CreateFichaTitle_alinea}" required="true" requiredMessage="#{bundle.CreateFichaRequiredMessage_alinea}">
+                        <f:selectItems value="#{alineaController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateFichaLabel_categoriaEconomica}" for="categoriaEconomica" />
+                    <h:selectOneMenu id="categoriaEconomica" value="#{fichaController.selected.categoriaEconomica}" title="#{bundle.CreateFichaTitle_categoriaEconomica}" required="true" requiredMessage="#{bundle.CreateFichaRequiredMessage_categoriaEconomica}">
+                        <f:selectItems value="#{categoriaEconomicaController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateFichaLabel_detalhamento}" for="detalhamento" />
+                    <h:selectOneMenu id="detalhamento" value="#{fichaController.selected.detalhamento}" title="#{bundle.CreateFichaTitle_detalhamento}" required="true" requiredMessage="#{bundle.CreateFichaRequiredMessage_detalhamento}">
+                        <f:selectItems value="#{detalhamentoController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateFichaLabel_especie}" for="especie" />
+                    <h:selectOneMenu id="especie" value="#{fichaController.selected.especie}" title="#{bundle.CreateFichaTitle_especie}" required="true" requiredMessage="#{bundle.CreateFichaRequiredMessage_especie}">
+                        <f:selectItems value="#{especieController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateFichaLabel_origem}" for="origem" />
+                    <h:selectOneMenu id="origem" value="#{fichaController.selected.origem}" title="#{bundle.CreateFichaTitle_origem}" required="true" requiredMessage="#{bundle.CreateFichaRequiredMessage_origem}">
+                        <f:selectItems value="#{origemController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateFichaLabel_rubrica}" for="rubrica" />
+                    <h:selectOneMenu id="rubrica" value="#{fichaController.selected.rubrica}" title="#{bundle.CreateFichaTitle_rubrica}" required="true" requiredMessage="#{bundle.CreateFichaRequiredMessage_rubrica}">
+                        <f:selectItems value="#{rubricaController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateFichaLabel_subalinea}" for="subalinea" />
+                    <h:selectOneMenu id="subalinea" value="#{fichaController.selected.subalinea}" title="#{bundle.CreateFichaTitle_subalinea}" required="true" requiredMessage="#{bundle.CreateFichaRequiredMessage_subalinea}">
+                        <f:selectItems value="#{subalineaController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{fichaController.create}" value="#{bundle.CreateFichaSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{fichaController.prepareList}" value="#{bundle.CreateFichaShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateFichaIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

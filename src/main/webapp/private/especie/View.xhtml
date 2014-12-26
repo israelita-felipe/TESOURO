@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewEspecieTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewEspecieLabel_id}"/>
+                    <h:outputText value="#{especieController.selected.id}" title="#{bundle.ViewEspecieTitle_id}"/>
+                    <h:outputText value="#{bundle.ViewEspecieLabel_descricao}"/>
+                    <h:outputText value="#{especieController.selected.descricao}" title="#{bundle.ViewEspecieTitle_descricao}"/>
+                    <h:outputText value="#{bundle.ViewEspecieLabel_usuario}"/>
+                    <h:outputText value="#{especieController.selected.usuario}" title="#{bundle.ViewEspecieTitle_usuario}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{especieController.destroyAndView}" value="#{bundle.ViewEspecieDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewEspecieEditLink}"/>
+                <br />
+                <h:commandLink action="#{especieController.prepareCreate}" value="#{bundle.ViewEspecieCreateLink}" />
+                <br />
+                <h:commandLink action="#{especieController.prepareList}" value="#{bundle.ViewEspecieShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewEspecieIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

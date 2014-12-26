@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateCategoriaEconomicaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateCategoriaEconomicaLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{categoriaEconomicaController.selected.id}" title="#{bundle.CreateCategoriaEconomicaTitle_id}" required="true" requiredMessage="#{bundle.CreateCategoriaEconomicaRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.CreateCategoriaEconomicaLabel_descricao}" for="descricao" />
+                    <h:inputText id="descricao" value="#{categoriaEconomicaController.selected.descricao}" title="#{bundle.CreateCategoriaEconomicaTitle_descricao}" required="true" requiredMessage="#{bundle.CreateCategoriaEconomicaRequiredMessage_descricao}"/>
+                    <h:outputLabel value="#{bundle.CreateCategoriaEconomicaLabel_usuario}" for="usuario" />
+                    <h:inputText id="usuario" value="#{categoriaEconomicaController.selected.usuario}" title="#{bundle.CreateCategoriaEconomicaTitle_usuario}" />
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{categoriaEconomicaController.create}" value="#{bundle.CreateCategoriaEconomicaSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{categoriaEconomicaController.prepareList}" value="#{bundle.CreateCategoriaEconomicaShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateCategoriaEconomicaIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

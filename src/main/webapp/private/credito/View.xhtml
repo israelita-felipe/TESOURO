@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewCreditoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewCreditoLabel_id}"/>
+                    <h:outputText value="#{creditoController.selected.id}" title="#{bundle.ViewCreditoTitle_id}"/>
+                    <h:outputText value="#{bundle.ViewCreditoLabel_dataCompensado}"/>
+                    <h:outputText value="#{creditoController.selected.dataCompensado}" title="#{bundle.ViewCreditoTitle_dataCompensado}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewCreditoLabel_dataLancamento}"/>
+                    <h:outputText value="#{creditoController.selected.dataLancamento}" title="#{bundle.ViewCreditoTitle_dataLancamento}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewCreditoLabel_descricao}"/>
+                    <h:outputText value="#{creditoController.selected.descricao}" title="#{bundle.ViewCreditoTitle_descricao}"/>
+                    <h:outputText value="#{bundle.ViewCreditoLabel_documento}"/>
+                    <h:outputText value="#{creditoController.selected.documento}" title="#{bundle.ViewCreditoTitle_documento}"/>
+                    <h:outputText value="#{bundle.ViewCreditoLabel_valor}"/>
+                    <h:outputText value="#{creditoController.selected.valor}" title="#{bundle.ViewCreditoTitle_valor}"/>
+                    <h:outputText value="#{bundle.ViewCreditoLabel_usuario}"/>
+                    <h:outputText value="#{creditoController.selected.usuario}" title="#{bundle.ViewCreditoTitle_usuario}"/>
+                    <h:outputText value="#{bundle.ViewCreditoLabel_conta}"/>
+                    <h:outputText value="#{creditoController.selected.conta}" title="#{bundle.ViewCreditoTitle_conta}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{creditoController.destroyAndView}" value="#{bundle.ViewCreditoDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewCreditoEditLink}"/>
+                <br />
+                <h:commandLink action="#{creditoController.prepareCreate}" value="#{bundle.ViewCreditoCreateLink}" />
+                <br />
+                <h:commandLink action="#{creditoController.prepareList}" value="#{bundle.ViewCreditoShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewCreditoIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

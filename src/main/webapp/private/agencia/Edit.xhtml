@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditAgenciaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditAgenciaLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{agenciaController.selected.id}" title="#{bundle.EditAgenciaTitle_id}" required="true" requiredMessage="#{bundle.EditAgenciaRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.EditAgenciaLabel_digito}" for="digito" />
+                    <h:inputText id="digito" value="#{agenciaController.selected.digito}" title="#{bundle.EditAgenciaTitle_digito}" required="true" requiredMessage="#{bundle.EditAgenciaRequiredMessage_digito}"/>
+                    <h:outputLabel value="#{bundle.EditAgenciaLabel_cep}" for="cep" />
+                    <h:inputText id="cep" value="#{agenciaController.selected.cep}" title="#{bundle.EditAgenciaTitle_cep}" required="true" requiredMessage="#{bundle.EditAgenciaRequiredMessage_cep}"/>
+                    <h:outputLabel value="#{bundle.EditAgenciaLabel_logradouro}" for="logradouro" />
+                    <h:inputText id="logradouro" value="#{agenciaController.selected.logradouro}" title="#{bundle.EditAgenciaTitle_logradouro}" required="true" requiredMessage="#{bundle.EditAgenciaRequiredMessage_logradouro}"/>
+                    <h:outputLabel value="#{bundle.EditAgenciaLabel_numero}" for="numero" />
+                    <h:inputText id="numero" value="#{agenciaController.selected.numero}" title="#{bundle.EditAgenciaTitle_numero}" required="true" requiredMessage="#{bundle.EditAgenciaRequiredMessage_numero}"/>
+                    <h:outputLabel value="#{bundle.EditAgenciaLabel_descricao}" for="descricao" />
+                    <h:inputText id="descricao" value="#{agenciaController.selected.descricao}" title="#{bundle.EditAgenciaTitle_descricao}" required="true" requiredMessage="#{bundle.EditAgenciaRequiredMessage_descricao}"/>
+                    <h:outputLabel value="#{bundle.EditAgenciaLabel_usuario}" for="usuario" />
+                    <h:inputText id="usuario" value="#{agenciaController.selected.usuario}" title="#{bundle.EditAgenciaTitle_usuario}" />
+                    <h:outputLabel value="#{bundle.EditAgenciaLabel_bancoId}" for="bancoId" />
+                    <h:selectOneMenu id="bancoId" value="#{agenciaController.selected.bancoId}" title="#{bundle.EditAgenciaTitle_bancoId}" required="true" requiredMessage="#{bundle.EditAgenciaRequiredMessage_bancoId}">
+                        <f:selectItems value="#{bancoController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditAgenciaLabel_cidadeId}" for="cidadeId" />
+                    <h:selectOneMenu id="cidadeId" value="#{agenciaController.selected.cidadeId}" title="#{bundle.EditAgenciaTitle_cidadeId}" required="true" requiredMessage="#{bundle.EditAgenciaRequiredMessage_cidadeId}">
+                        <f:selectItems value="#{cidadeController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{agenciaController.update}" value="#{bundle.EditAgenciaSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditAgenciaViewLink}"/>
+                <br />
+                <h:commandLink action="#{agenciaController.prepareList}" value="#{bundle.EditAgenciaShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditAgenciaIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

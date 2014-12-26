@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateAliquotaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateAliquotaLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{aliquotaController.selected.id}" title="#{bundle.CreateAliquotaTitle_id}" required="true" requiredMessage="#{bundle.CreateAliquotaRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.CreateAliquotaLabel_percentagem}" for="percentagem" />
+                    <h:inputText id="percentagem" value="#{aliquotaController.selected.percentagem}" title="#{bundle.CreateAliquotaTitle_percentagem}" required="true" requiredMessage="#{bundle.CreateAliquotaRequiredMessage_percentagem}"/>
+                    <h:outputLabel value="#{bundle.CreateAliquotaLabel_descricao}" for="descricao" />
+                    <h:inputText id="descricao" value="#{aliquotaController.selected.descricao}" title="#{bundle.CreateAliquotaTitle_descricao}" required="true" requiredMessage="#{bundle.CreateAliquotaRequiredMessage_descricao}"/>
+                    <h:outputLabel value="#{bundle.CreateAliquotaLabel_usuario}" for="usuario" />
+                    <h:inputText id="usuario" value="#{aliquotaController.selected.usuario}" title="#{bundle.CreateAliquotaTitle_usuario}" />
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{aliquotaController.create}" value="#{bundle.CreateAliquotaSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{aliquotaController.prepareList}" value="#{bundle.CreateAliquotaShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateAliquotaIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

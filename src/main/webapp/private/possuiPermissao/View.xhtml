@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewPossuiPermissaoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewPossuiPermissaoLabel_usuario}"/>
+                    <h:outputText value="#{possuiPermissaoController.selected.usuario}" title="#{bundle.ViewPossuiPermissaoTitle_usuario}"/>
+                    <h:outputText value="#{bundle.ViewPossuiPermissaoLabel_permissao}"/>
+                    <h:outputText value="#{possuiPermissaoController.selected.permissao}" title="#{bundle.ViewPossuiPermissaoTitle_permissao}"/>
+                    <h:outputText value="#{bundle.ViewPossuiPermissaoLabel_usuario1}"/>
+                    <h:outputText value="#{possuiPermissaoController.selected.usuario1}" title="#{bundle.ViewPossuiPermissaoTitle_usuario1}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{possuiPermissaoController.destroyAndView}" value="#{bundle.ViewPossuiPermissaoDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewPossuiPermissaoEditLink}"/>
+                <br />
+                <h:commandLink action="#{possuiPermissaoController.prepareCreate}" value="#{bundle.ViewPossuiPermissaoCreateLink}" />
+                <br />
+                <h:commandLink action="#{possuiPermissaoController.prepareList}" value="#{bundle.ViewPossuiPermissaoShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewPossuiPermissaoIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

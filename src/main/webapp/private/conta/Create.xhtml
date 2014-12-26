@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateContaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateContaLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{contaController.selected.id}" title="#{bundle.CreateContaTitle_id}" required="true" requiredMessage="#{bundle.CreateContaRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.CreateContaLabel_titular}" for="titular" />
+                    <h:inputText id="titular" value="#{contaController.selected.titular}" title="#{bundle.CreateContaTitle_titular}" required="true" requiredMessage="#{bundle.CreateContaRequiredMessage_titular}"/>
+                    <h:outputLabel value="#{bundle.CreateContaLabel_digito}" for="digito" />
+                    <h:inputText id="digito" value="#{contaController.selected.digito}" title="#{bundle.CreateContaTitle_digito}" required="true" requiredMessage="#{bundle.CreateContaRequiredMessage_digito}"/>
+                    <h:outputLabel value="#{bundle.CreateContaLabel_numero}" for="numero" />
+                    <h:inputText id="numero" value="#{contaController.selected.numero}" title="#{bundle.CreateContaTitle_numero}" required="true" requiredMessage="#{bundle.CreateContaRequiredMessage_numero}"/>
+                    <h:outputLabel value="#{bundle.CreateContaLabel_descricao}" for="descricao" />
+                    <h:inputText id="descricao" value="#{contaController.selected.descricao}" title="#{bundle.CreateContaTitle_descricao}" required="true" requiredMessage="#{bundle.CreateContaRequiredMessage_descricao}"/>
+                    <h:outputLabel value="#{bundle.CreateContaLabel_usuario}" for="usuario" />
+                    <h:inputText id="usuario" value="#{contaController.selected.usuario}" title="#{bundle.CreateContaTitle_usuario}" />
+                    <h:outputLabel value="#{bundle.CreateContaLabel_agenciaId}" for="agenciaId" />
+                    <h:selectOneMenu id="agenciaId" value="#{contaController.selected.agenciaId}" title="#{bundle.CreateContaTitle_agenciaId}" required="true" requiredMessage="#{bundle.CreateContaRequiredMessage_agenciaId}">
+                        <f:selectItems value="#{agenciaController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{contaController.create}" value="#{bundle.CreateContaSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{contaController.prepareList}" value="#{bundle.CreateContaShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateContaIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateDeducaoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateDeducaoLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{deducaoController.selected.id}" title="#{bundle.CreateDeducaoTitle_id}" required="true" requiredMessage="#{bundle.CreateDeducaoRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.CreateDeducaoLabel_valor}" for="valor" />
+                    <h:inputText id="valor" value="#{deducaoController.selected.valor}" title="#{bundle.CreateDeducaoTitle_valor}" required="true" requiredMessage="#{bundle.CreateDeducaoRequiredMessage_valor}"/>
+                    <h:outputLabel value="#{bundle.CreateDeducaoLabel_usuario}" for="usuario" />
+                    <h:inputText id="usuario" value="#{deducaoController.selected.usuario}" title="#{bundle.CreateDeducaoTitle_usuario}" />
+                    <h:outputLabel value="#{bundle.CreateDeducaoLabel_aliquota}" for="aliquota" />
+                    <h:selectOneMenu id="aliquota" value="#{deducaoController.selected.aliquota}" title="#{bundle.CreateDeducaoTitle_aliquota}" required="true" requiredMessage="#{bundle.CreateDeducaoRequiredMessage_aliquota}">
+                        <f:selectItems value="#{aliquotaController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateDeducaoLabel_credito}" for="credito" />
+                    <h:selectOneMenu id="credito" value="#{deducaoController.selected.credito}" title="#{bundle.CreateDeducaoTitle_credito}" required="true" requiredMessage="#{bundle.CreateDeducaoRequiredMessage_credito}">
+                        <f:selectItems value="#{creditoController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{deducaoController.create}" value="#{bundle.CreateDeducaoSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{deducaoController.prepareList}" value="#{bundle.CreateDeducaoShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateDeducaoIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

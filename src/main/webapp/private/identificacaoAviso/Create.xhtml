@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateIdentificacaoAvisoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateIdentificacaoAvisoLabel_valor}" for="valor" />
+                    <h:inputText id="valor" value="#{identificacaoAvisoController.selected.valor}" title="#{bundle.CreateIdentificacaoAvisoTitle_valor}" required="true" requiredMessage="#{bundle.CreateIdentificacaoAvisoRequiredMessage_valor}"/>
+                    <h:outputLabel value="#{bundle.CreateIdentificacaoAvisoLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{identificacaoAvisoController.selected.id}" title="#{bundle.CreateIdentificacaoAvisoTitle_id}" required="true" requiredMessage="#{bundle.CreateIdentificacaoAvisoRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.CreateIdentificacaoAvisoLabel_usuario}" for="usuario" />
+                    <h:inputText id="usuario" value="#{identificacaoAvisoController.selected.usuario}" title="#{bundle.CreateIdentificacaoAvisoTitle_usuario}" />
+                    <h:outputLabel value="#{bundle.CreateIdentificacaoAvisoLabel_avisoId}" for="avisoId" />
+                    <h:selectOneMenu id="avisoId" value="#{identificacaoAvisoController.selected.avisoId}" title="#{bundle.CreateIdentificacaoAvisoTitle_avisoId}" required="true" requiredMessage="#{bundle.CreateIdentificacaoAvisoRequiredMessage_avisoId}">
+                        <f:selectItems value="#{creditoController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateIdentificacaoAvisoLabel_fichaId}" for="fichaId" />
+                    <h:selectOneMenu id="fichaId" value="#{identificacaoAvisoController.selected.fichaId}" title="#{bundle.CreateIdentificacaoAvisoTitle_fichaId}" required="true" requiredMessage="#{bundle.CreateIdentificacaoAvisoRequiredMessage_fichaId}">
+                        <f:selectItems value="#{fichaController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{identificacaoAvisoController.create}" value="#{bundle.CreateIdentificacaoAvisoSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{identificacaoAvisoController.prepareList}" value="#{bundle.CreateIdentificacaoAvisoShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateIdentificacaoAvisoIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
