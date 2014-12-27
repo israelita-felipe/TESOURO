@@ -7,6 +7,7 @@ package br.com.tesouro.model;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Objects;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -183,27 +184,24 @@ public class Agencia implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        int hash = 3;
+        hash = 83 * hash + Objects.hashCode(this.digito);
+        hash = 83 * hash + Objects.hashCode(this.cep);
+        hash = 83 * hash + Objects.hashCode(this.logradouro);
+        hash = 83 * hash + Objects.hashCode(this.numero);
+        hash = 83 * hash + Objects.hashCode(this.descricao);
+        hash = 83 * hash + Objects.hashCode(this.bancoId);
+        hash = 83 * hash + Objects.hashCode(this.cidadeId);
         return hash;
     }
 
     @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Agencia)) {
-            return false;
-        }
-        Agencia other = (Agencia) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
-            return false;
-        }
+    public boolean equals(Object obj) {        
         return true;
     }
 
     @Override
     public String toString() {
-        return "br.com.tesouro.Agencia[ id=" + id + " ]";
-    }
-    
+        return ""+this.id;
+    }    
 }

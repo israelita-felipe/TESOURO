@@ -16,12 +16,13 @@ import javax.faces.convert.FacesConverter;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
+import javax.swing.JOptionPane;
 
 public class BancoController implements Serializable {
 
     private Banco current;
-    private DataModel items = null;
-    private br.com.tesouro.controll.facade.Facade<Banco> ejbFacade;
+    private DataModel<Banco> items = null;
+    private final br.com.tesouro.controll.facade.Facade<Banco> ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
 
@@ -37,7 +38,7 @@ public class BancoController implements Serializable {
         return current;
     }
 
-    private Facade<Banco> getFacade() {
+    public Facade<Banco> getFacade() {
         return ejbFacade;
     }
 
@@ -199,19 +200,7 @@ public class BancoController implements Serializable {
             }
             BancoController controller = (BancoController) facesContext.getApplication().getELResolver().
                     getValue(facesContext.getELContext(), null, "bancoController");
-            return controller.getBanco(getKey(value));
-        }
-
-        java.lang.String getKey(String value) {
-            java.lang.String key;
-            key = value;
-            return key;
-        }
-
-        String getStringKey(java.lang.String value) {
-            StringBuilder sb = new StringBuilder();
-            sb.append(value);
-            return sb.toString();
+            return controller.getBanco(value);
         }
 
         @Override
@@ -221,7 +210,7 @@ public class BancoController implements Serializable {
             }
             if (object instanceof Banco) {
                 Banco o = (Banco) object;
-                return getStringKey(o.getCnpj());
+                return o.getCnpj();
             } else {
                 throw new IllegalArgumentException("object " + object + " is of type " + object.getClass().getName() + "; expected type: " + Banco.class.getName());
             }

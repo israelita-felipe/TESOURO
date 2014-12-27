@@ -20,41 +20,11 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h:outputText escape="false" value="#{bundle.ListAgenciaEmpty}" rendered="#{agenciaController.items.rowCount == 0}"/>
-                        <h:outputText value="#{agenciaController.pagination.pageFirstItem + 1}..#{agenciaController.pagination.pageLastItem + 1}/#{agenciaController.pagination.itemsCount}" rendered="#{agenciaController.items.rowCount > 0}"/>&nbsp;
+                        <h:outputText value="#{agenciaController.pagination.pageFirstItem + 1} a #{agenciaController.pagination.pageLastItem + 1} de #{agenciaController.pagination.itemsCount}" rendered="#{agenciaController.items.rowCount > 0}"/>&nbsp;
                         <h:commandLink class="previous" action="#{agenciaController.previous}" value="#{bundle.Previous} #{agenciaController.pagination.pageSize}" rendered="#{agenciaController.pagination.hasPreviousPage}"/>&nbsp;
                         <h:commandLink class="next" action="#{agenciaController.next}" value="#{bundle.Next} #{agenciaController.pagination.pageSize}" rendered="#{agenciaController.pagination.hasNextPage}"/>&nbsp;
                     </div>
                     <h:dataTable value="#{agenciaController.items}" class="table" var="item" rendered="#{agenciaController.items.rowCount > 0}">
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListAgenciaTitle_id}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.id}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListAgenciaTitle_digito}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.digito}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListAgenciaTitle_cep}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.cep}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListAgenciaTitle_logradouro}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.logradouro}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListAgenciaTitle_numero}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.numero}"/>
-                        </h:column>
                         <h:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListAgenciaTitle_descricao}"/>
@@ -63,9 +33,15 @@
                         </h:column>
                         <h:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListAgenciaTitle_usuario}"/>
+                                <h:outputText value="#{bundle.ListAgenciaTitle_numero}"/>
                             </f:facet>
-                            <h:outputText value="#{item.usuario}"/>
+                            <h:outputText value="#{item.numero}"/>
+                        </h:column>  
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListAgenciaTitle_digito}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.digito}"/>
                         </h:column>
                         <h:column>
                             <f:facet name="header">
@@ -81,15 +57,13 @@
                         </h:column>
                         <h:column>                            
                             <f:facet name="header">
-                                <h:outputText value="&nbsp;"/>
-                            </f:facet>
-                            <center>
-                                <div class="btn-group">                                
-                                    <h:commandLink class="btn btn-default" action="#{agenciaController.prepareView}" value="#{bundle.ListAgenciaViewLink}"/>
-                                    <h:commandLink class="btn btn-default" action="#{agenciaController.prepareEdit}" value="#{bundle.ListAgenciaEditLink}"/>
-                                    <h:commandLink class="btn btn-default" action="#{agenciaController.destroy}" value="#{bundle.ListAgenciaDestroyLink}"/>
-                                </div>
-                            </center>
+                                <h:outputText value="#{bundle.Options}"/>
+                            </f:facet>                            
+                            <h:commandLink action="#{agenciaController.prepareView}" value="#{bundle.ListAgenciaViewLink}"/>
+                            |
+                            <h:commandLink action="#{agenciaController.prepareEdit}" value="#{bundle.ListAgenciaEditLink}"/>
+                            |
+                            <h:commandLink action="#{agenciaController.destroy}" value="#{bundle.ListAgenciaDestroyLink}"/>
                         </h:column>
                     </h:dataTable>
                 </div>

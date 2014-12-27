@@ -22,7 +22,7 @@ public class CidadeController implements Serializable {
 
     private Cidade current;
     private DataModel items = null;
-    private br.com.tesouro.controll.facade.Facade<Cidade> ejbFacade;
+    private final br.com.tesouro.controll.facade.Facade<Cidade> ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
 

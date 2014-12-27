@@ -15,6 +15,7 @@
     </properties>
     
     <dependencies>
+        <!-- Weld (implementação do CDI) -->
         <dependency>
             <groupId>org.eclipse.persistence</groupId>
             <artifactId>eclipselink</artifactId>

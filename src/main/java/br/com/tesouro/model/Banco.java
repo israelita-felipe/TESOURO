@@ -7,6 +7,7 @@ package br.com.tesouro.model;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Objects;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -98,27 +99,20 @@ public class Banco implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 0;
-        hash += (cnpj != null ? cnpj.hashCode() : 0);
+        int hash = 5;
+        hash = 59 * hash + Objects.hashCode(this.cnpj);
+        hash = 59 * hash + Objects.hashCode(this.descricao);
         return hash;
     }
 
     @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Banco)) {
-            return false;
-        }
-        Banco other = (Banco) object;
-        if ((this.cnpj == null && other.cnpj != null) || (this.cnpj != null && !this.cnpj.equals(other.cnpj))) {
-            return false;
-        }
+    public boolean equals(Object obj) {        
         return true;
-    }
+    }    
 
     @Override
     public String toString() {
-        return "br.com.tesouro.Banco[ cnpj=" + cnpj + " ]";
+        return this.descricao+" : "+this.cnpj;
     }
     
 }

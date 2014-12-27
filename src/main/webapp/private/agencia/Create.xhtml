@@ -11,12 +11,15 @@
                 <h:outputText value="#{bundle.CreateAgenciaTitle}"></h:outputText>
             </div>
         </ui:define>
-        <ui:define name="body">
-            <h:panelGroup id="messagePanel" layout="block">
-                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-            </h:panelGroup>
+        <ui:define name="body">            
             <h:form class="container">
-                <h:link outcome="/index" value="#{bundle.CreateAgenciaIndexLink}"/>
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <div class="breadcomb">
+                    <h:link outcome="/index" value="#{bundle.CreateAgenciaIndexLink}"/>
+                    <h:commandLink class="pull-right" action="#{agenciaController.prepareList}" value="#{bundle.CreateAgenciaShowAllLink}" immediate="true"/>
+                </div>                
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h:outputText value=""/>
@@ -29,7 +32,7 @@
                         <br/>
                         <div class="input-group">
                             <h:outputLabel class="input-group-addon" value="#{bundle.CreateAgenciaLabel_bancoId}" for="bancoId" />
-                            <h:selectOneMenu id="bancoId" class="form-control"  value="#{agenciaController.selected.bancoId}" title="#{bundle.CreateAgenciaTitle_bancoId}" required="true" requiredMessage="#{bundle.CreateAgenciaRequiredMessage_bancoId}">
+                            <h:selectOneMenu id="bancoId" class="form-control" value="#{agenciaController.selected.bancoId}" title="#{bundle.CreateAgenciaTitle_bancoId}" required="true" requiredMessage="#{bundle.CreateAgenciaRequiredMessage_bancoId}">
                                 <f:selectItems value="#{bancoController.itemsAvailableSelectOne}"/>
                             </h:selectOneMenu>
                         </div>
@@ -62,9 +65,9 @@
                             <h:inputText id="cep" class="form-control" value="#{agenciaController.selected.cep}" title="#{bundle.CreateAgenciaTitle_cep}" required="true" requiredMessage="#{bundle.CreateAgenciaRequiredMessage_cep}"/>                        
                         </div>
                     </div>
-                </div>                                     
-                <h:commandLink class="btn btn-default" action="#{agenciaController.create}" value="#{bundle.CreateAgenciaSaveLink}" />                           
-                <h:commandLink class="btn btn-default  pull-right" action="#{agenciaController.prepareList}" value="#{bundle.CreateAgenciaShowAllLink}" immediate="true"/>
+                </div> 
+                <hr/>
+                <h:commandLink class="btn btn-default" action="#{agenciaController.create}" value="#{bundle.CreateAgenciaSaveLink}" />                                           
             </h:form>
         </ui:define>
     </ui:composition>

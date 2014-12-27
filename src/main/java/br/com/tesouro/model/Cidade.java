@@ -7,6 +7,7 @@ package br.com.tesouro.model;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Objects;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -39,6 +40,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Cidade.findByNome", query = "SELECT c FROM Cidade c WHERE c.nome = :nome"),
     @NamedQuery(name = "Cidade.findByUsuario", query = "SELECT c FROM Cidade c WHERE c.usuario = :usuario")})
 public class Cidade implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Basic(optional = false)
     @NotNull
@@ -144,27 +146,22 @@ public class Cidade implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        int hash = 7;
+        hash = 79 * hash + Objects.hashCode(this.estado);
+        hash = 79 * hash + Objects.hashCode(this.pais);
+        hash = 79 * hash + Objects.hashCode(this.regiao);
+        hash = 79 * hash + Objects.hashCode(this.nome);
         return hash;
     }
 
     @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Cidade)) {
-            return false;
-        }
-        Cidade other = (Cidade) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
-            return false;
-        }
+    public boolean equals(Object obj) {        
         return true;
-    }
+    }   
 
     @Override
     public String toString() {
-        return "br.com.tesouro.Cidade[ id=" + id + " ]";
+        return this.nome+" : "+this.estado;
     }
-    
+
 }

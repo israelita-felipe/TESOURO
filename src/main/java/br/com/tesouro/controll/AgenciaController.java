@@ -76,6 +76,7 @@ public class AgenciaController implements Serializable {
 
     public String create() {
         try {
+            System.out.println(current.getBancoId());
             getFacade().create(current);
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("AgenciaCreated"));
             return prepareCreate();

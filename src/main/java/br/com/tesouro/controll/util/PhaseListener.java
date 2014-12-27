@@ -31,11 +31,11 @@ public class PhaseListener implements javax.faces.event.PhaseListener {
 
     @Override
     public void beforePhase(PhaseEvent event) {
+        Session session = null;
+        if (FacesContextUtil.getRequestSession() == null) {
+            session = HibernateUtil.getSessionFactory().openSession();
+        }
         if (event.getPhaseId().equals(PhaseId.RESTORE_VIEW)) {
-            Session session = null;
-            if (FacesContextUtil.getRequestSession() == null) {
-                session = HibernateUtil.getSessionFactory().openSession();
-            }
             session.beginTransaction();
             FacesContextUtil.setRequestSession(session);
         }
