@@ -1,9 +1,9 @@
 package br.com.tesouro.controll;
 
-import br.com.tesouro.Especie;
+import br.com.tesouro.model.Especie;
+import br.com.tesouro.controll.facade.Facade;
 import br.com.tesouro.controll.util.JsfUtil;
 import br.com.tesouro.controll.util.PaginationHelper;
-import br.com.tesouro.controll.facade.EspecieFacade;
 
 import java.io.Serializable;
 import java.util.ResourceBundle;
@@ -24,12 +24,12 @@ public class EspecieController implements Serializable {
 
     private Especie current;
     private DataModel items = null;
-    @EJB
-    private br.com.tesouro.controll.facade.EspecieFacade ejbFacade;
+    private br.com.tesouro.controll.facade.Facade<Especie> ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
 
     public EspecieController() {
+        this.ejbFacade = new Facade<>(Especie.class);
     }
 
     public Especie getSelected() {
@@ -40,7 +40,7 @@ public class EspecieController implements Serializable {
         return current;
     }
 
-    private EspecieFacade getFacade() {
+    private Facade<Especie> getFacade() {
         return ejbFacade;
     }
 

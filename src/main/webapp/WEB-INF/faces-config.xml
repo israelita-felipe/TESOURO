@@ -9,4 +9,36 @@
             <var>bundle</var>
         </resource-bundle>
     </application>
+    <!-- FASE LISTENER  -->
+    <lifecycle>
+        <phase-listener>
+            br.com.tesouro.controll.util.PhaseListener
+        </phase-listener>
+    </lifecycle>
+    
+    <!-- BEANS -->
+    <managed-bean>
+        <managed-bean-name>agenciaController</managed-bean-name>
+        <managed-bean-class>
+            br.com.tesouro.controll.AgenciaController
+        </managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>  
+    
+    <managed-bean>
+        <managed-bean-name>cidadeController</managed-bean-name>
+        <managed-bean-class>
+            br.com.tesouro.controll.CidadeController
+        </managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean> 
+    
+    <managed-bean>
+        <managed-bean-name>bancoController</managed-bean-name>
+        <managed-bean-class>
+            br.com.tesouro.controll.BancoController
+        </managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean> 
+        
 </faces-config>

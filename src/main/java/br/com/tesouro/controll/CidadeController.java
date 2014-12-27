@@ -1,13 +1,12 @@
 package br.com.tesouro.controll;
 
-import br.com.tesouro.Cidade;
+import br.com.tesouro.model.Cidade;
+import br.com.tesouro.controll.facade.Facade;
 import br.com.tesouro.controll.util.JsfUtil;
 import br.com.tesouro.controll.util.PaginationHelper;
-import br.com.tesouro.controll.facade.CidadeFacade;
 
 import java.io.Serializable;
 import java.util.ResourceBundle;
-import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.component.UIComponent;
@@ -18,18 +17,17 @@ import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
 
-@Named("cidadeController")
-@SessionScoped
+
 public class CidadeController implements Serializable {
 
     private Cidade current;
     private DataModel items = null;
-    @EJB
-    private br.com.tesouro.controll.facade.CidadeFacade ejbFacade;
+    private br.com.tesouro.controll.facade.Facade<Cidade> ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
 
     public CidadeController() {
+        this.ejbFacade = new Facade<>(Cidade.class);
     }
 
     public Cidade getSelected() {
@@ -40,7 +38,7 @@ public class CidadeController implements Serializable {
         return current;
     }
 
-    private CidadeFacade getFacade() {
+    private Facade<Cidade> getFacade() {
         return ejbFacade;
     }
 

@@ -1,9 +1,9 @@
 package br.com.tesouro.controll;
 
-import br.com.tesouro.PossuiPermissao;
+import br.com.tesouro.model.PossuiPermissao;
+import br.com.tesouro.controll.facade.Facade;
 import br.com.tesouro.controll.util.JsfUtil;
 import br.com.tesouro.controll.util.PaginationHelper;
-import br.com.tesouro.controll.facade.PossuiPermissaoFacade;
 
 import java.io.Serializable;
 import java.util.ResourceBundle;
@@ -24,24 +24,24 @@ public class PossuiPermissaoController implements Serializable {
 
     private PossuiPermissao current;
     private DataModel items = null;
-    @EJB
-    private br.com.tesouro.controll.facade.PossuiPermissaoFacade ejbFacade;
+    private br.com.tesouro.controll.facade.Facade<PossuiPermissao> ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
 
     public PossuiPermissaoController() {
+        this.ejbFacade = new Facade<>(PossuiPermissao.class);
     }
 
     public PossuiPermissao getSelected() {
         if (current == null) {
             current = new PossuiPermissao();
-            current.setPossuiPermissaoPK(new br.com.tesouro.PossuiPermissaoPK());
+            current.setPossuiPermissaoPK(new br.com.tesouro.model.PossuiPermissaoPK());
             selectedItemIndex = -1;
         }
         return current;
     }
 
-    private PossuiPermissaoFacade getFacade() {
+    private Facade<PossuiPermissao> getFacade() {
         return ejbFacade;
     }
 
@@ -76,7 +76,7 @@ public class PossuiPermissaoController implements Serializable {
 
     public String prepareCreate() {
         current = new PossuiPermissao();
-        current.setPossuiPermissaoPK(new br.com.tesouro.PossuiPermissaoPK());
+        current.setPossuiPermissaoPK(new br.com.tesouro.model.PossuiPermissaoPK());
         selectedItemIndex = -1;
         return "Create";
     }
@@ -194,7 +194,7 @@ public class PossuiPermissaoController implements Serializable {
         return JsfUtil.getSelectItems(ejbFacade.findAll(), true);
     }
 
-    public PossuiPermissao getPossuiPermissao(br.com.tesouro.PossuiPermissaoPK id) {
+    public PossuiPermissao getPossuiPermissao(br.com.tesouro.model.PossuiPermissaoPK id) {
         return ejbFacade.find(id);
     }
 
@@ -214,16 +214,16 @@ public class PossuiPermissaoController implements Serializable {
             return controller.getPossuiPermissao(getKey(value));
         }
 
-        br.com.tesouro.PossuiPermissaoPK getKey(String value) {
-            br.com.tesouro.PossuiPermissaoPK key;
+        br.com.tesouro.model.PossuiPermissaoPK getKey(String value) {
+            br.com.tesouro.model.PossuiPermissaoPK key;
             String values[] = value.split(SEPARATOR_ESCAPED);
-            key = new br.com.tesouro.PossuiPermissaoPK();
+            key = new br.com.tesouro.model.PossuiPermissaoPK();
             key.setUsuarioId(Integer.parseInt(values[0]));
             key.setPermissaoId(Integer.parseInt(values[1]));
             return key;
         }
 
-        String getStringKey(br.com.tesouro.PossuiPermissaoPK value) {
+        String getStringKey(br.com.tesouro.model.PossuiPermissaoPK value) {
             StringBuilder sb = new StringBuilder();
             sb.append(value.getUsuarioId());
             sb.append(SEPARATOR);

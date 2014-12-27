@@ -1,13 +1,12 @@
 package br.com.tesouro.controll;
 
-import br.com.tesouro.Debito;
+import br.com.tesouro.model.Debito;
+import br.com.tesouro.controll.facade.Facade;
 import br.com.tesouro.controll.util.JsfUtil;
 import br.com.tesouro.controll.util.PaginationHelper;
-import br.com.tesouro.controll.facade.DebitoFacade;
 
 import java.io.Serializable;
 import java.util.ResourceBundle;
-import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.component.UIComponent;
@@ -24,12 +23,12 @@ public class DebitoController implements Serializable {
 
     private Debito current;
     private DataModel items = null;
-    @EJB
-    private br.com.tesouro.controll.facade.DebitoFacade ejbFacade;
+    private br.com.tesouro.controll.facade.Facade<Debito> ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
 
     public DebitoController() {
+        this.ejbFacade = new Facade<>(Debito.class);
     }
 
     public Debito getSelected() {
@@ -40,7 +39,7 @@ public class DebitoController implements Serializable {
         return current;
     }
 
-    private DebitoFacade getFacade() {
+    private Facade<Debito> getFacade() {
         return ejbFacade;
     }
 

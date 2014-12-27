@@ -1,9 +1,9 @@
 package br.com.tesouro.controll;
 
-import br.com.tesouro.Deducao;
+import br.com.tesouro.model.Deducao;
+import br.com.tesouro.controll.facade.Facade;
 import br.com.tesouro.controll.util.JsfUtil;
 import br.com.tesouro.controll.util.PaginationHelper;
-import br.com.tesouro.controll.facade.DeducaoFacade;
 
 import java.io.Serializable;
 import java.util.ResourceBundle;
@@ -24,12 +24,12 @@ public class DeducaoController implements Serializable {
 
     private Deducao current;
     private DataModel items = null;
-    @EJB
-    private br.com.tesouro.controll.facade.DeducaoFacade ejbFacade;
+    private br.com.tesouro.controll.facade.Facade<Deducao> ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
 
     public DeducaoController() {
+        this.ejbFacade = new Facade<>(Deducao.class);
     }
 
     public Deducao getSelected() {
@@ -40,7 +40,7 @@ public class DeducaoController implements Serializable {
         return current;
     }
 
-    private DeducaoFacade getFacade() {
+    private Facade<Deducao> getFacade() {
         return ejbFacade;
     }
 

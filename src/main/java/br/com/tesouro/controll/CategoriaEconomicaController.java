@@ -1,13 +1,12 @@
 package br.com.tesouro.controll;
 
-import br.com.tesouro.CategoriaEconomica;
+import br.com.tesouro.model.CategoriaEconomica;
+import br.com.tesouro.controll.facade.Facade;
 import br.com.tesouro.controll.util.JsfUtil;
 import br.com.tesouro.controll.util.PaginationHelper;
-import br.com.tesouro.controll.facade.CategoriaEconomicaFacade;
 
 import java.io.Serializable;
 import java.util.ResourceBundle;
-import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.component.UIComponent;
@@ -24,12 +23,12 @@ public class CategoriaEconomicaController implements Serializable {
 
     private CategoriaEconomica current;
     private DataModel items = null;
-    @EJB
-    private br.com.tesouro.controll.facade.CategoriaEconomicaFacade ejbFacade;
+    private br.com.tesouro.controll.facade.Facade<CategoriaEconomica> ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
 
     public CategoriaEconomicaController() {
+        this.ejbFacade = new Facade<>(CategoriaEconomica.class);
     }
 
     public CategoriaEconomica getSelected() {
@@ -40,7 +39,7 @@ public class CategoriaEconomicaController implements Serializable {
         return current;
     }
 
-    private CategoriaEconomicaFacade getFacade() {
+    private Facade<CategoriaEconomica> getFacade() {
         return ejbFacade;
     }
 

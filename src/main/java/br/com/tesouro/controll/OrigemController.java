@@ -1,9 +1,9 @@
 package br.com.tesouro.controll;
 
-import br.com.tesouro.Origem;
+import br.com.tesouro.model.Origem;
+import br.com.tesouro.controll.facade.Facade;
 import br.com.tesouro.controll.util.JsfUtil;
 import br.com.tesouro.controll.util.PaginationHelper;
-import br.com.tesouro.controll.facade.OrigemFacade;
 
 import java.io.Serializable;
 import java.util.ResourceBundle;
@@ -24,12 +24,12 @@ public class OrigemController implements Serializable {
 
     private Origem current;
     private DataModel items = null;
-    @EJB
-    private br.com.tesouro.controll.facade.OrigemFacade ejbFacade;
+    private br.com.tesouro.controll.facade.Facade<Origem> ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
 
     public OrigemController() {
+        this.ejbFacade = new Facade<>(Origem.class);
     }
 
     public Origem getSelected() {
@@ -40,7 +40,7 @@ public class OrigemController implements Serializable {
         return current;
     }
 
-    private OrigemFacade getFacade() {
+    private Facade<Origem> getFacade() {
         return ejbFacade;
     }
 

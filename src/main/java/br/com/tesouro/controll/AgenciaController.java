@@ -1,15 +1,12 @@
 package br.com.tesouro.controll;
 
-import br.com.tesouro.Agencia;
+import br.com.tesouro.model.Agencia;
 import br.com.tesouro.controll.util.JsfUtil;
 import br.com.tesouro.controll.util.PaginationHelper;
-import br.com.tesouro.controll.facade.AgenciaFacade;
+import br.com.tesouro.controll.facade.Facade;
 
 import java.io.Serializable;
 import java.util.ResourceBundle;
-import javax.ejb.EJB;
-import javax.inject.Named;
-import javax.enterprise.context.SessionScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
@@ -18,18 +15,16 @@ import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
 
-@Named("agenciaController")
-@SessionScoped
 public class AgenciaController implements Serializable {
 
     private Agencia current;
     private DataModel items = null;
-    @EJB
-    private br.com.tesouro.controll.facade.AgenciaFacade ejbFacade;
+    private br.com.tesouro.controll.facade.Facade<Agencia> ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
 
-    public AgenciaController() {
+    public AgenciaController() {        
+        this.ejbFacade = new Facade<>(Agencia.class);
     }
 
     public Agencia getSelected() {
@@ -40,7 +35,7 @@ public class AgenciaController implements Serializable {
         return current;
     }
 
-    private AgenciaFacade getFacade() {
+    private Facade<Agencia> getFacade() {
         return ejbFacade;
     }
 

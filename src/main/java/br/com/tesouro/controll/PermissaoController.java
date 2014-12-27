@@ -1,9 +1,9 @@
 package br.com.tesouro.controll;
 
-import br.com.tesouro.Permissao;
+import br.com.tesouro.model.Permissao;
+import br.com.tesouro.controll.facade.Facade;
 import br.com.tesouro.controll.util.JsfUtil;
 import br.com.tesouro.controll.util.PaginationHelper;
-import br.com.tesouro.controll.facade.PermissaoFacade;
 
 import java.io.Serializable;
 import java.util.ResourceBundle;
@@ -24,12 +24,12 @@ public class PermissaoController implements Serializable {
 
     private Permissao current;
     private DataModel items = null;
-    @EJB
-    private br.com.tesouro.controll.facade.PermissaoFacade ejbFacade;
+    private br.com.tesouro.controll.facade.Facade<Permissao> ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
 
     public PermissaoController() {
+        this.ejbFacade = new Facade<>(Permissao.class);
     }
 
     public Permissao getSelected() {
@@ -40,7 +40,7 @@ public class PermissaoController implements Serializable {
         return current;
     }
 
-    private PermissaoFacade getFacade() {
+    private Facade<Permissao> getFacade() {
         return ejbFacade;
     }
 

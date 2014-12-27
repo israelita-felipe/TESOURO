@@ -1,9 +1,9 @@
 package br.com.tesouro.controll;
 
-import br.com.tesouro.ContemAliquota;
+import br.com.tesouro.model.ContemAliquota;
+import br.com.tesouro.controll.facade.Facade;
 import br.com.tesouro.controll.util.JsfUtil;
 import br.com.tesouro.controll.util.PaginationHelper;
-import br.com.tesouro.controll.facade.ContemAliquotaFacade;
 
 import java.io.Serializable;
 import java.util.ResourceBundle;
@@ -24,12 +24,12 @@ public class ContemAliquotaController implements Serializable {
 
     private ContemAliquota current;
     private DataModel items = null;
-    @EJB
-    private br.com.tesouro.controll.facade.ContemAliquotaFacade ejbFacade;
+    private br.com.tesouro.controll.facade.Facade<ContemAliquota> ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
 
     public ContemAliquotaController() {
+        this.ejbFacade = new Facade<>(ContemAliquota.class);
     }
 
     public ContemAliquota getSelected() {
@@ -40,7 +40,7 @@ public class ContemAliquotaController implements Serializable {
         return current;
     }
 
-    private ContemAliquotaFacade getFacade() {
+    private Facade<ContemAliquota> getFacade() {
         return ejbFacade;
     }
 

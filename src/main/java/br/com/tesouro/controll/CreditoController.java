@@ -1,9 +1,9 @@
 package br.com.tesouro.controll;
 
-import br.com.tesouro.Credito;
+import br.com.tesouro.model.Credito;
+import br.com.tesouro.controll.facade.Facade;
 import br.com.tesouro.controll.util.JsfUtil;
 import br.com.tesouro.controll.util.PaginationHelper;
-import br.com.tesouro.controll.facade.CreditoFacade;
 
 import java.io.Serializable;
 import java.util.ResourceBundle;
@@ -24,12 +24,12 @@ public class CreditoController implements Serializable {
 
     private Credito current;
     private DataModel items = null;
-    @EJB
-    private br.com.tesouro.controll.facade.CreditoFacade ejbFacade;
+    private br.com.tesouro.controll.facade.Facade<Credito> ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
 
     public CreditoController() {
+        this.ejbFacade = new Facade<>(Credito.class);
     }
 
     public Credito getSelected() {
@@ -40,7 +40,7 @@ public class CreditoController implements Serializable {
         return current;
     }
 
-    private CreditoFacade getFacade() {
+    private Facade<Credito> getFacade() {
         return ejbFacade;
     }
 

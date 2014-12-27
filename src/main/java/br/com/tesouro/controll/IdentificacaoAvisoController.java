@@ -1,9 +1,9 @@
 package br.com.tesouro.controll;
 
-import br.com.tesouro.IdentificacaoAviso;
+import br.com.tesouro.model.IdentificacaoAviso;
+import br.com.tesouro.controll.facade.Facade;
 import br.com.tesouro.controll.util.JsfUtil;
 import br.com.tesouro.controll.util.PaginationHelper;
-import br.com.tesouro.controll.facade.IdentificacaoAvisoFacade;
 
 import java.io.Serializable;
 import java.util.ResourceBundle;
@@ -24,12 +24,12 @@ public class IdentificacaoAvisoController implements Serializable {
 
     private IdentificacaoAviso current;
     private DataModel items = null;
-    @EJB
-    private br.com.tesouro.controll.facade.IdentificacaoAvisoFacade ejbFacade;
+    private br.com.tesouro.controll.facade.Facade<IdentificacaoAviso> ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
 
     public IdentificacaoAvisoController() {
+        this.ejbFacade = new Facade<>(IdentificacaoAviso.class);
     }
 
     public IdentificacaoAviso getSelected() {
@@ -40,7 +40,7 @@ public class IdentificacaoAvisoController implements Serializable {
         return current;
     }
 
-    private IdentificacaoAvisoFacade getFacade() {
+    private Facade<IdentificacaoAviso> getFacade() {
         return ejbFacade;
     }
 

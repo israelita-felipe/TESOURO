@@ -1,13 +1,12 @@
 package br.com.tesouro.controll;
 
-import br.com.tesouro.Banco;
+import br.com.tesouro.model.Banco;
+import br.com.tesouro.controll.facade.Facade;
 import br.com.tesouro.controll.util.JsfUtil;
 import br.com.tesouro.controll.util.PaginationHelper;
-import br.com.tesouro.controll.facade.BancoFacade;
 
 import java.io.Serializable;
 import java.util.ResourceBundle;
-import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.component.UIComponent;
@@ -18,18 +17,16 @@ import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
 
-@Named("bancoController")
-@SessionScoped
 public class BancoController implements Serializable {
 
     private Banco current;
     private DataModel items = null;
-    @EJB
-    private br.com.tesouro.controll.facade.BancoFacade ejbFacade;
+    private br.com.tesouro.controll.facade.Facade<Banco> ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
 
     public BancoController() {
+        this.ejbFacade = new Facade<>(Banco.class);
     }
 
     public Banco getSelected() {
@@ -40,7 +37,7 @@ public class BancoController implements Serializable {
         return current;
     }
 
-    private BancoFacade getFacade() {
+    private Facade<Banco> getFacade() {
         return ejbFacade;
     }
 

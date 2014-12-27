@@ -1,9 +1,9 @@
 package br.com.tesouro.controll;
 
-import br.com.tesouro.Fechamento;
+import br.com.tesouro.model.Fechamento;
+import br.com.tesouro.controll.facade.Facade;
 import br.com.tesouro.controll.util.JsfUtil;
 import br.com.tesouro.controll.util.PaginationHelper;
-import br.com.tesouro.controll.facade.FechamentoFacade;
 
 import java.io.Serializable;
 import java.util.ResourceBundle;
@@ -24,24 +24,24 @@ public class FechamentoController implements Serializable {
 
     private Fechamento current;
     private DataModel items = null;
-    @EJB
-    private br.com.tesouro.controll.facade.FechamentoFacade ejbFacade;
+    private br.com.tesouro.controll.facade.Facade<Fechamento> ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
 
     public FechamentoController() {
+        this.ejbFacade = new Facade<>(Fechamento.class);
     }
 
     public Fechamento getSelected() {
         if (current == null) {
             current = new Fechamento();
-            current.setFechamentoPK(new br.com.tesouro.FechamentoPK());
+            current.setFechamentoPK(new br.com.tesouro.model.FechamentoPK());
             selectedItemIndex = -1;
         }
         return current;
     }
 
-    private FechamentoFacade getFacade() {
+    private Facade<Fechamento> getFacade() {
         return ejbFacade;
     }
 
@@ -76,7 +76,7 @@ public class FechamentoController implements Serializable {
 
     public String prepareCreate() {
         current = new Fechamento();
-        current.setFechamentoPK(new br.com.tesouro.FechamentoPK());
+        current.setFechamentoPK(new br.com.tesouro.model.FechamentoPK());
         selectedItemIndex = -1;
         return "Create";
     }
@@ -192,7 +192,7 @@ public class FechamentoController implements Serializable {
         return JsfUtil.getSelectItems(ejbFacade.findAll(), true);
     }
 
-    public Fechamento getFechamento(br.com.tesouro.FechamentoPK id) {
+    public Fechamento getFechamento(br.com.tesouro.model.FechamentoPK id) {
         return ejbFacade.find(id);
     }
 
@@ -212,17 +212,17 @@ public class FechamentoController implements Serializable {
             return controller.getFechamento(getKey(value));
         }
 
-        br.com.tesouro.FechamentoPK getKey(String value) {
-            br.com.tesouro.FechamentoPK key;
+        br.com.tesouro.model.FechamentoPK getKey(String value) {
+            br.com.tesouro.model.FechamentoPK key;
             String values[] = value.split(SEPARATOR_ESCAPED);
-            key = new br.com.tesouro.FechamentoPK();
+            key = new br.com.tesouro.model.FechamentoPK();
             key.setDataInicio(java.sql.Date.valueOf(values[0]));
             key.setDataFim(java.sql.Date.valueOf(values[1]));
             key.setContaId(Integer.parseInt(values[2]));
             return key;
         }
 
-        String getStringKey(br.com.tesouro.FechamentoPK value) {
+        String getStringKey(br.com.tesouro.model.FechamentoPK value) {
             StringBuilder sb = new StringBuilder();
             sb.append(value.getDataInicio());
             sb.append(SEPARATOR);

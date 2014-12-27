@@ -1,9 +1,9 @@
 package br.com.tesouro.controll;
 
-import br.com.tesouro.Subalinea;
+import br.com.tesouro.model.Subalinea;
+import br.com.tesouro.controll.facade.Facade;
 import br.com.tesouro.controll.util.JsfUtil;
 import br.com.tesouro.controll.util.PaginationHelper;
-import br.com.tesouro.controll.facade.SubalineaFacade;
 
 import java.io.Serializable;
 import java.util.ResourceBundle;
@@ -24,12 +24,12 @@ public class SubalineaController implements Serializable {
 
     private Subalinea current;
     private DataModel items = null;
-    @EJB
-    private br.com.tesouro.controll.facade.SubalineaFacade ejbFacade;
+    private br.com.tesouro.controll.facade.Facade<Subalinea> ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
 
     public SubalineaController() {
+        this.ejbFacade = new Facade<>(Subalinea.class);
     }
 
     public Subalinea getSelected() {
@@ -40,7 +40,7 @@ public class SubalineaController implements Serializable {
         return current;
     }
 
-    private SubalineaFacade getFacade() {
+    private Facade<Subalinea> getFacade() {
         return ejbFacade;
     }
 
