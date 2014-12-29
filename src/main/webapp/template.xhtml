@@ -7,17 +7,16 @@
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <title><ui:insert name="title">Default Title</ui:insert></title>
-                <!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"/>
-
-<!-- Optional theme -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css"/>
-
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+        
+        <h:outputScript library="js" name="jquery-2.1.0.min.js"/>
+        <!-- BOOTSTRAP -->
+        <h:outputStylesheet library="css" name="bootstrap.min.css"/>
+        <h:outputScript library="js" name="bootstrap.min.js"/>        
+        <h:outputStylesheet library="css" name="bootstrap-theme.css"/>
+        
     </h:head>
 
-    <h:body>
+    <h:body class="jumbotron">
         <h1>
             <ui:insert name="title">Default Title</ui:insert>
         </h1>

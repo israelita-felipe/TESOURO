@@ -2,51 +2,51 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
 
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
-            <h:outputText value="#{bundle.ViewAgenciaTitle}"></h:outputText>
+            <div class="container">
+                <h:outputText value="#{bundle.ViewAgenciaTitle}"></h:outputText>
+            </div>
         </ui:define>
         <ui:define name="body">
             <h:panelGroup id="messagePanel" layout="block">
-                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                <h:messages class="alert alert-info" errorStyle="color: red" infoStyle="color: green" layout="table"/>
             </h:panelGroup>
-            <h:form>
-                <h:panelGrid columns="2">
-                    <h:outputText value="#{bundle.ViewAgenciaLabel_id}"/>
-                    <h:outputText value="#{agenciaController.selected.id}" title="#{bundle.ViewAgenciaTitle_id}"/>
-                    <h:outputText value="#{bundle.ViewAgenciaLabel_digito}"/>
-                    <h:outputText value="#{agenciaController.selected.digito}" title="#{bundle.ViewAgenciaTitle_digito}"/>
-                    <h:outputText value="#{bundle.ViewAgenciaLabel_cep}"/>
-                    <h:outputText value="#{agenciaController.selected.cep}" title="#{bundle.ViewAgenciaTitle_cep}"/>
-                    <h:outputText value="#{bundle.ViewAgenciaLabel_logradouro}"/>
-                    <h:outputText value="#{agenciaController.selected.logradouro}" title="#{bundle.ViewAgenciaTitle_logradouro}"/>
-                    <h:outputText value="#{bundle.ViewAgenciaLabel_numero}"/>
-                    <h:outputText value="#{agenciaController.selected.numero}" title="#{bundle.ViewAgenciaTitle_numero}"/>
-                    <h:outputText value="#{bundle.ViewAgenciaLabel_descricao}"/>
-                    <h:outputText value="#{agenciaController.selected.descricao}" title="#{bundle.ViewAgenciaTitle_descricao}"/>
-                    <h:outputText value="#{bundle.ViewAgenciaLabel_usuario}"/>
-                    <h:outputText value="#{agenciaController.selected.usuario}" title="#{bundle.ViewAgenciaTitle_usuario}"/>
-                    <h:outputText value="#{bundle.ViewAgenciaLabel_bancoId}"/>
-                    <h:outputText value="#{agenciaController.selected.bancoId}" title="#{bundle.ViewAgenciaTitle_bancoId}"/>
-                    <h:outputText value="#{bundle.ViewAgenciaLabel_cidadeId}"/>
-                    <h:outputText value="#{agenciaController.selected.cidadeId}" title="#{bundle.ViewAgenciaTitle_cidadeId}"/>
-                </h:panelGrid>
-                <br />
-                <h:commandLink action="#{agenciaController.destroyAndView}" value="#{bundle.ViewAgenciaDestroyLink}"/>
-                <br />
-                <br />
-                <h:link outcome="Edit" value="#{bundle.ViewAgenciaEditLink}"/>
-                <br />
-                <h:commandLink action="#{agenciaController.prepareCreate}" value="#{bundle.ViewAgenciaCreateLink}" />
-                <br />
-                <h:commandLink action="#{agenciaController.prepareList}" value="#{bundle.ViewAgenciaShowAllLink}"/>
-                <br />
-                <br />
+            <h:form class="container">
                 <h:link outcome="/index" value="#{bundle.ViewAgenciaIndexLink}"/>
-
+                <h:commandLink class="pull-right" action="#{agenciaController.prepareList}" value="#{bundle.ViewAgenciaShowAllLink}"/>                
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <h:outputText value="#{bundle.ViewAgenciaLabel_descricao}"/>
+                        <h:outputText value="#{agenciaController.selected.descricao}" title="#{bundle.ViewAgenciaTitle_descricao}"/>
+                        <br/>
+                        <h:outputText value="#{bundle.ViewAgenciaLabel_numero}"/>
+                        <h:outputText value="#{agenciaController.selected.numero}" title="#{bundle.ViewAgenciaTitle_numero}"/>
+                        <br/>
+                        <h:outputText value="#{bundle.ViewAgenciaLabel_digito}"/>
+                        <h:outputText value="#{agenciaController.selected.digito}" title="#{bundle.ViewAgenciaTitle_digito}"/>
+                        <hr/>
+                        <h:outputText value="#{bundle.ViewAgenciaLabel_logradouro}"/>
+                        <h:outputText value="#{agenciaController.selected.logradouro}" title="#{bundle.ViewAgenciaTitle_logradouro}"/>
+                        <br/>
+                        <h:outputText value="#{bundle.ViewAgenciaLabel_cep}"/>
+                        <h:outputText value="#{agenciaController.selected.cep}" title="#{bundle.ViewAgenciaTitle_cep}"/>                        
+                        <br/>
+                        <h:outputText value="#{bundle.ViewAgenciaLabel_bancoId}"/>
+                        <h:outputText value="#{agenciaController.selected.bancoId}" title="#{bundle.ViewAgenciaTitle_bancoId}"/>
+                        <br/>
+                        <h:outputText value="#{bundle.ViewAgenciaLabel_cidadeId}"/>
+                        <h:outputText value="#{agenciaController.selected.cidadeId}" title="#{bundle.ViewAgenciaTitle_cidadeId}"/>
+                    </div>
+                </div>
+                <hr/>
+                <h:commandLink action="#{agenciaController.destroyAndView}" value="#{bundle.ViewAgenciaDestroyLink}"/>
+                |
+                <h:link outcome="Edit" value="#{bundle.ViewAgenciaEditLink}"/>
+                |
+                <h:commandLink action="#{agenciaController.prepareCreate}" value="#{bundle.ViewAgenciaCreateLink}" />                
             </h:form>
         </ui:define>
     </ui:composition>
