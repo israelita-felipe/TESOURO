@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditArquivoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditArquivoLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{arquivoController.selected.id}" title="#{bundle.EditArquivoTitle_id}" required="true" requiredMessage="#{bundle.EditArquivoRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.EditArquivoLabel_nome}" for="nome" />
+                    <h:inputText id="nome" value="#{arquivoController.selected.nome}" title="#{bundle.EditArquivoTitle_nome}" required="true" requiredMessage="#{bundle.EditArquivoRequiredMessage_nome}"/>
+                    <h:outputLabel value="#{bundle.EditArquivoLabel_arquivo}" for="arquivo" />
+                    <h:inputText id="arquivo" value="#{arquivoController.selected.arquivo}" title="#{bundle.EditArquivoTitle_arquivo}" required="true" requiredMessage="#{bundle.EditArquivoRequiredMessage_arquivo}"/>
+                </h:panelGrid>
+                <h:commandLink action="#{arquivoController.update}" value="#{bundle.EditArquivoSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditArquivoViewLink}"/>
+                <br />
+                <h:commandLink action="#{arquivoController.prepareList}" value="#{bundle.EditArquivoShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditArquivoIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

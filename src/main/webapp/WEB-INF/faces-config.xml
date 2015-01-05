@@ -8,6 +8,10 @@
             <base-name>/Bundle</base-name>
             <var>bundle</var>
         </resource-bundle>
+        <resource-bundle>
+            <base-name>/Bundle</base-name>
+            <var>bundle</var>
+        </resource-bundle>
     </application>
     <!-- FASE LISTENER  -->
     <lifecycle>
@@ -38,6 +42,14 @@
         <managed-bean-name>bancoController</managed-bean-name>
         <managed-bean-class>
             br.com.tesouro.controll.BancoController
+        </managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean> 
+    
+    <managed-bean>
+        <managed-bean-name>arquivoController</managed-bean-name>
+        <managed-bean-class>
+            br.com.tesouro.controll.ArquivoController
         </managed-bean-class>
         <managed-bean-scope>session</managed-bean-scope>
     </managed-bean> 

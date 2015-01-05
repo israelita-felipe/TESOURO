@@ -1,37 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
-    <session-factory>
-        <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
-        <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
-        <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/SGLB</property>
-        <property name="hibernate.connection.username">postgres</property>
-        <property name="hibernate.connection.password">1509199215091992</property>
-        
-        <mapping class="br.com.tesouro.model.Agencia"/>
-        <mapping class="br.com.tesouro.model.Banco"/>
-        <mapping class="br.com.tesouro.model.Cidade"/>
-        <mapping class="br.com.tesouro.model.Alinea"/>
-        <mapping class="br.com.tesouro.model.Aliquota"/>
-        <mapping class="br.com.tesouro.model.CategoriaEconomica"/>
-        <mapping class="br.com.tesouro.model.Conta"/>
-        <mapping class="br.com.tesouro.model.ContemAliquota"/>
-        <mapping class="br.com.tesouro.model.Credito"/>
-        <mapping class="br.com.tesouro.model.Debito"/>
-        <mapping class="br.com.tesouro.model.Deducao"/>
-        <mapping class="br.com.tesouro.model.Detalhamento"/>
-        <mapping class="br.com.tesouro.model.Especie"/>
-        <mapping class="br.com.tesouro.model.Fechamento"/>
-        <mapping class="br.com.tesouro.model.FechamentoPK"/>
-        <mapping class="br.com.tesouro.model.Ficha"/>
-        <mapping class="br.com.tesouro.model.IdentificacaoAviso"/>
-        <mapping class="br.com.tesouro.model.Origem"/>
-        <mapping class="br.com.tesouro.model.Permissao"/>
-        <mapping class="br.com.tesouro.model.PossuiPermissao"/>
-        <mapping class="br.com.tesouro.model.PossuiPermissaoPK"/>
-        <mapping class="br.com.tesouro.model.Rubrica"/>
-        <mapping class="br.com.tesouro.model.Subalinea"/>
-        <mapping class="br.com.tesouro.model.Usuario"/>
-        
-    </session-factory>    
+  <session-factory>
+    <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
+    <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
+    <property name="hibernate.connection.url">jdbc:postgresql://192.168.0.24:5432/SGLB</property>
+    <property name="hibernate.connection.username">postgres</property>
+    <property name="hibernate.connection.password">******</property>
+    <mapping class="br.com.tesouro.model.Agencia"/>
+    <mapping class="br.com.tesouro.model.Arquivo"/>
+    <mapping class="br.com.tesouro.model.Banco"/>
+    <mapping class="br.com.tesouro.model.Cidade"/>
+    <mapping class="br.com.tesouro.model.Alinea"/>
+    <mapping class="br.com.tesouro.model.Aliquota"/>
+    <mapping class="br.com.tesouro.model.CategoriaEconomica"/>
+    <mapping class="br.com.tesouro.model.Conta"/>
+    <mapping class="br.com.tesouro.model.ContemAliquota"/>
+    <mapping class="br.com.tesouro.model.Credito"/>
+    <mapping class="br.com.tesouro.model.Debito"/>
+    <mapping class="br.com.tesouro.model.Deducao"/>
+    <mapping class="br.com.tesouro.model.Detalhamento"/>
+    <mapping class="br.com.tesouro.model.Especie"/>
+    <mapping class="br.com.tesouro.model.Fechamento"/>
+    <mapping class="br.com.tesouro.model.FechamentoPK"/>
+    <mapping class="br.com.tesouro.model.Ficha"/>
+    <mapping class="br.com.tesouro.model.IdentificacaoAviso"/>
+    <mapping class="br.com.tesouro.model.Origem"/>
+    <mapping class="br.com.tesouro.model.Permissao"/>
+    <mapping class="br.com.tesouro.model.PossuiPermissao"/>
+    <mapping class="br.com.tesouro.model.PossuiPermissaoPK"/>
+    <mapping class="br.com.tesouro.model.Rubrica"/>
+    <mapping class="br.com.tesouro.model.Subalinea"/>
+    <mapping class="br.com.tesouro.model.Usuario"/>
+  </session-factory>
 </hibernate-configuration>
